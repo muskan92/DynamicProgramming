@@ -7,6 +7,31 @@ import java.util.stream.Stream;
 
 public class StreamBasic
 {
+    
+    
+       
+    public void getId() {
+       List<Customer> customerList = new ArrayList<>();
+       customerList.add(new Customer(1,"mn",1));
+       customerList.add(new Customer(2,"gf",2));
+       customerList.add(new Customer(3,"hgfh",3));
+       customerList.add(new Customer(4,"mnb",4));
+
+        List<Integer> collect = customerList.stream().peek(c->System.out.println(c.getId()))
+                .map(c -> c.getId())
+                .collect(Collectors.toList());
+
+
+        //Map<String,Customer> nameToCustomerMap =
+        Map<String, Integer> collect1 = customerList.parallelStream()
+                .map(c -> new Customer(c.getId(),"blue",9))
+                .peek(c1 -> System.out.println(c1))
+                .collect(Collectors.toMap(k -> Integer.toString(k.getId()), k -> k.getAge()));
+        System.out.println(collect1);
+
+    }
+
+    
     public static void main(String[] args) {
 
         List<String> list = Arrays.asList("76","00","45","98","455");
